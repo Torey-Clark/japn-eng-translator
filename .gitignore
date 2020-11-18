@@ -129,3 +129,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+training_checkpoints/checkpoint
+training_checkpoints/ckpt-1.data-00000-of-00001
+*.index
+*.data-00000-of-00001
