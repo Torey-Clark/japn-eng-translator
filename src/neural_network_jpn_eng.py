@@ -48,11 +48,12 @@ input_tensor_train, input_tensor_val, target_tensor_train, target_tensor_val = t
 # Show length
 print(len(input_tensor_train), len(target_tensor_train), len(input_tensor_val), len(target_tensor_val))
 
-print("Input Language; index to word mapping")
+print("\nInput Language; index to word mapping")
 convert(inp_lang, input_tensor_train[0])
 print()
-print("Targer Language; index to word mapping")
+print("Target Language; index to word mapping")
 convert(targ_lang, target_tensor_train[0])
+print()
 
 BUFFER_SIZE = len(input_tensor_train)
 BATCH_SIZE = 64
@@ -163,7 +164,9 @@ def evaluate(sentence):
     sentence = preprocess_sentence_jpn(sentence)
 
     inputs = [inp_lang.word_index[i] for i in sentence.split(' ')]
-    print("Inputs: " + inputs)
+    print("Inputs: ")
+    for input in inputs:
+        print(input + ' ')
     inputs = tf.keras.preprocessing.sequence.pad_sequences([inputs], maxlen=max_length_inp, padding='post')
     inputs = tf.convert_to_tensor(inputs)
 
