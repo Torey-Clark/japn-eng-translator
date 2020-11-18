@@ -28,6 +28,7 @@ def preprocess_sentence_eng(sentence):
 
     sentence = '<start> ' + sentence + ' <end>'
     if debug:
+        print(len(sentence))
         print(sentence)
 
     return sentence
@@ -39,8 +40,15 @@ def preprocess_sentence_jpn(sentence):
 
     words = [word.surface for word in jpn_tagger(sentence)]
 
-    sentence = '<start> ' + sentence + ' <end>'
+    sentence = '<start> '
+    for word in words:
+        sentence = sentence + word + ' '
+
+    sentence = sentence[:-1] # Remove the trailing space.
+    sentence = sentence + ' <end>'
     if debug:
+        print("First word: " + words[0])
+        print(len(sentence))
         print(sentence)
 
     return sentence
